@@ -11,7 +11,15 @@ export const isMasterAdmin = (user) => {
     .trim()
     .toLowerCase();
 
-  return id === "DSHB-ADM-01" || id === "ADM001" || id === "ADM-MASTER" || email === "admin@siclus.id" || role === "master_admin";
+  return (
+    id === "DSHB-ADM-01" ||
+    id === "ADM001" ||
+    id === "ADM-MASTER" ||
+    email === "admin@siclus.id" ||
+    email === "admin_angkutan@siclus.id" ||
+    email === "admin.angkutan@siclus.id" ||
+    role === "master_admin"
+  );
 };
 
 // Judul peran untuk UI
