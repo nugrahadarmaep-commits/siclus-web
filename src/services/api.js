@@ -3,10 +3,12 @@ import axios from "axios";
 // ==============================================================================
 // KONFIGURASI INSTANCE API CLIENT (AXIOS)
 // ==============================================================================
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://siclus-api.vercel.app/api";
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || "https://siclus-api.vercel.app/api";
+const BASE_URL = String(rawBaseUrl).trim().replace(/\/+$/, "");
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
+  timeout: 30000, // Timeout 30 detik untuk menangani cold-start backend Vercel free tier
   headers: {
     "Content-Type": "application/json",
   },
@@ -27,11 +29,12 @@ apiClient.interceptors.request.use(
 );
 
 // ==============================================================================
-// INTERCEPTOR: PENANGANAN RESPON & AUTO-LOGOUT 401
+// INTERCEPTOR: PENANGANAN RESPON, ERROR TIMEOUT/OFFLINE & AUTO-LOGOUT 401
 // ==============================================================================
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
+    // 1. Tangani Auto-Logout jika Token Expired / Akun Terhapus (401)
     if (error.response && error.response.status === 401 && !error.config?.url?.includes("/auth/login")) {
       const errorDetail = error.response?.data?.detail;
       const msg = typeof errorDetail === "string" ? errorDetail : "Sesi Anda telah berakhir atau akun telah dihapus dari sistem.";
@@ -39,7 +42,29 @@ apiClient.interceptors.response.use(
       localStorage.removeItem("siclus_token");
       localStorage.removeItem("siclus_user");
       window.location.href = "/login";
+      return Promise.reject(error);
     }
+
+    // 2. Normalisasi pesan error ramah pengguna (Network Error / Timeout / 504 Vercel Free Tier)
+    if (!error.response) {
+      const isTimeout = error.code === "ECONNABORTED" || error.message?.includes("timeout");
+      const friendlyMsg = isTimeout
+        ? "Koneksi ke server timeout (melebihi 30 detik). Server sedang memulai atau koneksi internet lambat. Silakan coba lagi."
+        : "Gagal terhubung ke server backend. Periksa koneksi internet Anda atau pastikan server backend aktif.";
+
+      error.response = {
+        data: { detail: friendlyMsg },
+        status: isTimeout ? 408 : 0,
+      };
+      error.message = friendlyMsg;
+    } else if (error.response.status === 504) {
+      const gatewayMsg = "Server backend (Vercel) timeout saat memproses request (504). Silakan coba beberapa saat lagi.";
+      if (!error.response.data || typeof error.response.data !== "object") {
+        error.response.data = { detail: gatewayMsg };
+      }
+      error.message = gatewayMsg;
+    }
+
     return Promise.reject(error);
   },
 );
