@@ -1,132 +1,112 @@
-# 🚌 SICLUS (Sistem Informasi Checklist & Laporan Operasional Supir)
+# SICLUS - School Transportation Management System (Frontend)
 
-![React](https://img.shields.io/badge/React-19.x-61DAFB?style=flat-square&logo=react)
-![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?style=flat-square&logo=vite)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-v4.x-38B2AC?style=flat-square&logo=tailwind-css)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+**SICLUS** (*Sistem Informasi dan Manajemen Operasional Angkutan Sekolah*) is a web-based operational and checklist information system developed for the **Department of Transportation of Mojokerto City (*Dinas Perhubungan Kota Mojokerto*)**.
 
-**SICLUS Frontend** adalah aplikasi web modern berbasis React dan Tailwind CSS yang dirancang untuk mengelola inspeksi armada, penugasan driver, dan pelaporan operasional harian secara real-time.
+This application facilitates daily vehicle inspections, driver assignments, operational checkpoint tracking, and administrative reporting for the municipal free school transportation program.
 
 ---
 
-## 🌟 Fitur Utama
+## Key Modules & Features
 
-### 👨‍💼 Panel Admin
-- 📊 **Dashboard Real-Time**: Pemantauan status armada, driver aktif, dan statistik harian dengan polling otomatis.
-- 👨‍✈️ **Kelola Driver & Penugasan**:
-  - Registrasi & manajemen data supir.
-  - Penugasan armada harian (Nopol, Jenis Kendaraan, Kapasitas, Trayek).
-  - **God Mode Cut-off**: Konfigurasi fleksibel batas waktu pengisian formulir, batas keluar garasi, dan batas kembali.
-- 📋 **Rekapitulasi Laporan Driver**:
-  - Filter rentang tanggal & status laporan.
-  - Modal preview foto selfie & inspeksi armada (Lightbox Modal).
-  - Ekspor laporan operasional ke format **Excel (.xlsx)**.
-- 👤 **Profil Admin**: Pengaturan foto profil dan detail akun.
+### 1. Administrative Portal
+- **Operational Dashboard**: Real-time overview of active fleets, driver attendance, and daily trip statuses.
+- **Fleet & Driver Management**: Management of driver profiles, vehicle data, operational routes (*trayek*), and daily assignments.
+- **Reporting & Export**: Detailed inspection and trip logs with export capabilities to Excel format (`.xlsx`).
+- **Operational Schedule Control**: Configuration of daily operational cut-off times for departure and return sessions.
 
-### 🚍 Panel Driver
-- 📱 **Beranda Operasional**: Informasi penugasan sesi Pagi & Siang, status perjalanan, dan countdown jam *cut-off*.
-- 📝 **Form Inspeksi & Checklist**:
-  - Checking kondisi fisik kendaraan & peralatan keselamatan.
-  - Upload foto selfie saat memulai tugas (dengan kompresi foto otomatis di browser).
-  - Input Odometer awal & BBM.
-- 📍 **Tracking Checkpoints (CP)**:
-  - **CP 1**: Keluar Garasi / Start Sesi.
-  - **CP 2**: Tiba di Titik Destination.
-  - **CP 3**: Selesai & Kembali ke Garasi.
-- 📚 **Riwayat & Profil Driver**: Akses riwayat laporan terdahulu dan manajemen foto profil.
+### 2. Driver Portal
+- **Operational Checklist**: Pre-trip vehicle inspection forms covering safety equipment, fuel, and odometer readings.
+- **Selfie & Identity Verification**: Photo verification at the start of assignments with automatic in-browser image compression.
+- **Trip Checkpoints**: Stage tracking from garage departure, destination arrival, to garage return.
+- **Trip History**: Driver access to personal operational history and profile data.
+
+### 3. Progressive Web App (PWA)
+- Installable as a standalone app on Android, iOS, and desktop browsers.
+- Adaptive circular maskable icons for Android system compliance.
+- Fast loading with service worker asset caching.
 
 ---
 
-## 🛠️ Teknologi & Stack
+## Technology Stack
 
-- **Core Framework**: [React 19](https://react.dev/) + [Vite 8](https://vitejs.dev/)
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vite.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **Routing**: [React Router v7](https://reactrouter.com/)
-- **HTTP Client**: [Axios](https://axios-http.com/) (dilengkapi Request/Response Interceptor, Token Auth, & Auto-Logout 401)
-- **Notifikasi**: [React Hot Toast](https://react-hot-toast.com/)
-- **Export Data**: [XLSX](https://github.com/SheetJS/sheetjs)
-- **Pengolahan Gambar**: [Browser Image Compression](https://github.com/Donaldcwl/browser-image-compression)
-- **Linter**: [Oxlint](https://oxc-project.github.org/)
+- **HTTP Client**: [Axios](https://axios-http.com/)
+- **PWA Plugin**: [vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
+- **Data Export**: [ExcelJS](https://github.com/exceljs/exceljs) / [XLSX](https://github.com/SheetJS/sheetjs)
+- **Notifications**: [React Hot Toast](https://react-hot-toast.com/)
 
 ---
 
-## 🚀 Panduan Instalasi & Penggunaan
+## Getting Started
 
-### 1. Prasyarat
-Pastikan komputer Anda sudah terinstal:
-- [Node.js](https://nodejs.org/) (Versi 18+ direkomendasikan)
-- [npm](https://www.npmjs.com/) atau `yarn` / `pnpm`
+### Prerequisites
+- [Node.js](https://nodejs.org/) (Version 18 or higher recommended)
+- `npm` (packaged with Node.js)
 
-### 2. Clone Repository
-```bash
-git clone https://github.com/cevinnandika/siclus-frontend.git
-cd siclus-frontend
-```
+### Installation
 
-### 3. Instalasi Dependensi
-```bash
-npm install
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nugrahadarmaep-commits/siclus-web.git
+   cd siclus-web
+   ```
 
-### 4. Konfigurasi Environment Variable
-Buat file `.env` di direktori utama proyek (atau salin dari `.env.example`):
-```env
-VITE_API_BASE_URL=http://localhost:8000/api
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### 5. Jalankan Mode Pengembangan (Dev Server)
-```bash
-npm run dev
-```
-Buka peramban di `http://localhost:5173`.
+3. Configure Environment Variables:
+   Create a `.env` file in the project root directory:
+   ```env
+   VITE_API_BASE_URL=http://localhost:8000/api
+   ```
 
-### 6. Build Produksi
-```bash
-npm run build
-```
-Hasil build akan tersimpan pada folder `dist/`.
+### Available Scripts
+
+- **Development Mode**:
+  ```bash
+  npm run dev
+  ```
+  Runs the local development server at `http://localhost:5173`.
+
+- **Production Build**:
+  ```bash
+  npm run build
+  ```
+  Bundles and optimizes production assets into the `dist/` directory, including Service Worker generation.
+
+- **Preview Production Build**:
+  ```bash
+  npm run preview
+  ```
+  Locally previews the production build.
 
 ---
 
-## 📁 Struktur Direktori
+## Project Structure
 
 ```text
-c:/Users/Cevin Nur Andika/PROJECT-SICLUS/
-├── src/
-│   ├── assets/             # Asset statis (gambar, font, logo)
-│   ├── components/
-│   │   ├── common/         # Komponen umum (Modal Hapus, TimePicker, dll)
-│   │   └── layout/         # AppLayout, BottomNav (Sidebar & Navigation)
-│   ├── pages/
-│   │   ├── admin/          # Halaman khusus Admin (Dashboard, ManageDriver, RekapDriver, Profil)
-│   │   ├── auth/           # Halaman Login
-│   │   └── driver/         # Halaman khusus Driver (Beranda, Laporan, Riwayat, Profil)
-│   ├── services/           # Service API Axios & Interceptors (`api.js`)
-│   ├── utils/              # Helper fungsi (dateUtils, exportExcel, dll)
-│   ├── App.jsx             # Routing utama & State terpusat
-│   ├── main.jsx            # Entry point aplikasi
-│   └── index.css           # Styling global & Tailwind CSS imports
-├── .env.example
-├── package.json
-├── vite.config.js
-└── README.md
+src/
+├── assets/         # Static visual assets (logos, illustrations)
+├── components/     # Reusable UI components and layouts
+│   ├── common/     # Generic modals, pickers, and alerts
+│   └── layout/     # Navigation bars, sidebars, and app wrappers
+├── pages/          # Main application views
+│   ├── admin/      # Administrator management pages
+│   ├── auth/       # Authentication views (Login)
+│   └── driver/     # Driver checklist and checkpoint views
+├── services/       # API clients and HTTP interceptors
+├── utils/          # Helpers, formatters, and export utilities
+├── App.jsx         # Application routing and state providers
+└── main.jsx        # Application entry point
 ```
 
 ---
 
-## 🔗 Integrasi Backend
+## Organization & Acknowledgement
 
-Aplikasi ini sudah terintegrasi secara penuh dengan REST API backend (FastAPI / Express):
-- **Base URL Default**: `http://localhost:8000/api`
-- **Autentikasi**: Bearer Token JWT disimpan di `localStorage` (`siclus_token`).
-- **Endpoint Utama**:
-  - `/api/auth/login`
-  - `/api/driver/*`
-  - `/api/laporan/*`
-  - `/api/admin/*`
-
----
-
-## 📄 Lisensi
-
-Distributed under the MIT License. See `LICENSE` for more information.
+Developed for **Dinas Perhubungan Kota Mojokerto** (Department of Transportation of Mojokerto City) to support safe, organized, and transparent school transportation services.
