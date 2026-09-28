@@ -1,29 +1,29 @@
-# SICLUS - School Transportation Management System (Frontend)
+# SICLUS - School Integrated Check-in & Logbook Unit System (Frontend)
 
-**SICLUS** (*Sistem Informasi dan Manajemen Operasional Angkutan Sekolah*) is a web-based operational and checklist information system developed for the **Department of Transportation of Mojokerto City (*Dinas Perhubungan Kota Mojokerto*)**.
+**SICLUS** (**S**chool **I**ntegrated **C**heck-in & **L**ogbook **U**nit **S**ystem) is a web-based operational check-in and digital logbook management application developed for the **Department of Transportation of Mojokerto City (*Dinas Perhubungan Kota Mojokerto*)**.
 
-This application facilitates daily vehicle inspections, driver assignments, operational checkpoint tracking, and administrative reporting for the municipal free school transportation program.
+The application digitalizes daily driver attendance check-ins, pre-trip vehicle condition inspections, trip checkpoint logging, and administrative reporting for municipal school transportation services.
 
 ---
 
 ## Key Modules & Features
 
 ### 1. Administrative Portal
-- **Operational Dashboard**: Real-time overview of active fleets, driver attendance, and daily trip statuses.
-- **Fleet & Driver Management**: Management of driver profiles, vehicle data, operational routes (*trayek*), and daily assignments.
-- **Reporting & Export**: Detailed inspection and trip logs with export capabilities to Excel format (`.xlsx`).
-- **Operational Schedule Control**: Configuration of daily operational cut-off times for departure and return sessions.
+- **Real-Time Monitoring**: Live dashboard tracking active driver check-ins, operational unit statuses, and daily trip progress.
+- **Unit & Driver Management**: Administration of driver profiles, vehicle inventory, operational routes (*trayek*), and session assignments.
+- **Digital Logbook Review & Export**: Comprehensive inspection records, check-in timestamps, and photo verifications with export capabilities to Excel format (`.xlsx`).
+- **Operational Schedule Control**: Dynamic configuration of operational cut-off times for departure and return check-ins.
 
 ### 2. Driver Portal
-- **Operational Checklist**: Pre-trip vehicle inspection forms covering safety equipment, fuel, and odometer readings.
-- **Selfie & Identity Verification**: Photo verification at the start of assignments with automatic in-browser image compression.
-- **Trip Checkpoints**: Stage tracking from garage departure, destination arrival, to garage return.
-- **Trip History**: Driver access to personal operational history and profile data.
+- **Identity Check-in & Verification**: Secure driver check-in with selfie capture and automatic in-browser image compression.
+- **Vehicle Inspection Checklist**: Digital pre-trip inspection covering vehicle roadworthiness, safety equipment, fuel levels, and initial odometer readings.
+- **Trip Checkpoint Logging**: Step-by-step progress logging from garage departure (*CP 1*), destination arrival (*CP 2*), to garage return (*CP 3*).
+- **Logbook History**: Direct access for drivers to review past assignments and submission records.
 
 ### 3. Progressive Web App (PWA)
-- Installable as a standalone app on Android, iOS, and desktop browsers.
-- Adaptive circular maskable icons for Android system compliance.
-- Fast loading with service worker asset caching.
+- Installable on mobile devices (Android/iOS) and desktop browsers for dedicated app experience.
+- Compliant with modern Android adaptive and maskable circular icon standards.
+- Fast service worker caching for reliable performance in transit environments.
 
 ---
 
@@ -34,9 +34,9 @@ This application facilitates daily vehicle inspections, driver assignments, oper
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **Routing**: [React Router v7](https://reactrouter.com/)
 - **HTTP Client**: [Axios](https://axios-http.com/)
-- **PWA Plugin**: [vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
+- **PWA Integration**: [vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
 - **Data Export**: [ExcelJS](https://github.com/exceljs/exceljs) / [XLSX](https://github.com/SheetJS/sheetjs)
-- **Notifications**: [React Hot Toast](https://react-hot-toast.com/)
+- **Toast Notifications**: [React Hot Toast](https://react-hot-toast.com/)
 
 ---
 
@@ -77,9 +77,9 @@ This application facilitates daily vehicle inspections, driver assignments, oper
   ```bash
   npm run build
   ```
-  Bundles and optimizes production assets into the `dist/` directory, including Service Worker generation.
+  Bundles and optimizes production assets into the `dist/` directory with Service Worker generation.
 
-- **Preview Production Build**:
+- **Preview Build**:
   ```bash
   npm run preview
   ```
@@ -91,17 +91,17 @@ This application facilitates daily vehicle inspections, driver assignments, oper
 
 ```text
 src/
-├── assets/         # Static visual assets (logos, illustrations)
-├── components/     # Reusable UI components and layouts
-│   ├── common/     # Generic modals, pickers, and alerts
-│   └── layout/     # Navigation bars, sidebars, and app wrappers
-├── pages/          # Main application views
-│   ├── admin/      # Administrator management pages
+├── assets/         # Static assets (logos, icons, fonts)
+├── components/     # Reusable UI elements, navigation, and modal dialogues
+│   ├── common/     # Shared components (Modals, Pickers, Alerts)
+│   └── layout/     # Layout wrappers, headers, and navigation bars
+├── pages/          # Application views
+│   ├── admin/      # Administrative dashboard, management, and recap views
 │   ├── auth/       # Authentication views (Login)
-│   └── driver/     # Driver checklist and checkpoint views
-├── services/       # API clients and HTTP interceptors
-├── utils/          # Helpers, formatters, and export utilities
-├── App.jsx         # Application routing and state providers
+│   └── driver/     # Driver check-in, checklist, and checkpoint views
+├── services/       # API clients, endpoints, and HTTP interceptors
+├── utils/          # Formatting helpers, role helpers, and export utilities
+├── App.jsx         # Root router and application state
 └── main.jsx        # Application entry point
 ```
 
@@ -109,4 +109,4 @@ src/
 
 ## Organization & Acknowledgement
 
-Developed for **Dinas Perhubungan Kota Mojokerto** (Department of Transportation of Mojokerto City) to support safe, organized, and transparent school transportation services.
+Developed for the **Department of Transportation of Mojokerto City (*Dinas Perhubungan Kota Mojokerto*)** to support transparent, accountable, and digitized school transportation management.

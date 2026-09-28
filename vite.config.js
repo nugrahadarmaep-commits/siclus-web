@@ -14,7 +14,7 @@ export default defineConfig({
       manifest: {
         name: 'SICLUS - Dishub Kota Mojokerto',
         short_name: 'SICLUS',
-        description: 'Sistem Informasi dan Manajemen Operasional Angkutan Sekolah Dinas Perhubungan Kota Mojokerto',
+        description: 'School Integrated Check-in & Logbook Unit System - Dinas Perhubungan Kota Mojokerto',
         theme_color: '#2563eb',
         background_color: '#ffffff',
         display: 'standalone',
